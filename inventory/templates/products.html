@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div>
+    <h1>All Products</h1>
+    <table class="table-auto m-4">
+        <tr class="">
+            <th class="text-left px-2">Brand</th>
+            <th class="text-left px-2">Product</th>
+            <th class="text-left px-2">Shade</th>
+            <th class="text-left px-2">Price</th>
+            <th class="text-left px-2">Quantity</th>
+            <th class="text-left px-2">Action</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+        <td class="text-left px-2"><a href="{% url 'products'%}?q={{product.brand}}">{{ product.brand }}</a></td>
+        <td class="text-left px-2"><a href="{% url 'product' product.id %}">{{ product.name }}</a></td>
+        <td class="text-left px-2">{{ product.shade }}</td>
+        <td class="text-left px-2">{{ product.price }}</td>
+        <td class="text-left px-2">{{ product.quantity }}</td>
+        <td class="text-left px-2">
+            <div class="py-1">
+                <a class="bg-indigo-500 rounded my-2 pb-1 px-2 text-white text-center hover:bg-indigo-600 hover:shadow-md" href="{% url 'update_product' product.id %}">Update</a>
+                <a class="bg-red-500 rounded my-2 pb-1 px-2 text-white text-center hover:bg-red-600 hover:shadow-md" href="{% url 'delete_product' product.id %}">Delete</a>
+            </div>
+            <!-- <div class="flex bg-red-500 rounded m-1 px-2 text-white text-center">
+                <a href="{% url 'delete_product' product.id %}">Delete</a>
+            </div>             -->
+            
+            
+        </td>
+        </tr>
+
+        {% endfor %}  
+    </table>  
+</div>
+{% endblock %}

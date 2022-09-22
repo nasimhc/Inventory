@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+	<main class="flex items-center justify-center h-screen bg-gray-100">
+		<!-- login box -->
+		<div class="w-96 p-6 bg-white shadow-md rounded">
+			<form action="{% url 'login_view' %}" method="post">
+				{% csrf_token %}
+				<!-- image div -->
+				<div class="flex items-center justify-center mb-4">
+					<!-- <img class="h-32" src="https://cdn-icons-png.flaticon.com/128/6830/6830289.png" alt=""> -->
+					<img class="h-32" src="https://seeklogo.com/images/F/fireship-io-logo-A2EC33F21F-seeklogo.com.png" alt="">
+				</div>  
+
+				{% if message %}
+					<div class="bg-red-500 rounded px-4 py-2 mb-4 text-white text-center">
+						{{ message }}						
+					</div>
+				{% endif %}				
+				
+				<input type="text" autocomplete="off" name="username" placeholder="Username" class="w-full bg-gray-100 py-3 px-4 outline-none rounded-2xl mt-2 mb-4 text-gray-500 focus:ring-1 focus:ring-orange-200">
+				<input type="password" name="password" placeholder="Password" class="w-full bg-gray-100 py-3 px-4 outline-none rounded-2xl mt-2 mb-6 text-gray-500 focus:ring-1 focus:ring-orange-200">
+				<button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 py-3 rounded-2xl text-white">Login</button>
+			</form>
+		</div>
+	  </main>
+
+
+{% endblock %}
+

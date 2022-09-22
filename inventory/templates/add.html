@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h1>Add Products</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit">
+    </form>
+{% endblock %}
