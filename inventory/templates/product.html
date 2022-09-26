@@ -1,11 +1,50 @@
 {% extends 'layout.html' %}
+{% load static %}
 
 {% block body %}
-<p>Product: {{ product.name }}</p>
-<p>Shade: {{ product.shade }}</p>
-<p>Price: {{ product.price }}</p>
-<p>Quantity: {{ product.quantity }}</p>
-<p>Description: {{ product.description }}</p>
+<!-- <div class="flex bg-gray-100 h-full">
+    <div class="flex flex-col space-y-2 items-start justify-center mx-auto my-auto h-2/3 w-1/2 shadow-lg rounded-2xl bg-neutral-50">
+        <div class="px-3 text-3xl font-sans text-gray-600 font-thin">
+            <img src="{{ product.product_image.url }}" alt="">            
+        </div>
+        <div class="px-3 text-3xl font-sans text-gray-600 font-thin">{{ product.brand }}</div>
+        <div class="px-3 text-lg font-semibold text-gray-600">{{ product.name }}</div>
+        <div class="px-3 text-lg font-thin font-sans text-gray-800">Shade: {{ product.shade }}</div>
+        <div class="px-3 text-lg font-thin font-sans text-gray-800">Price: {{ product.price }}</div>
+        <div class="px-3 text-lg font-thin font-sans text-gray-800">Quantity: {{ product.quantity }}</div>
+        <div class="px-3 pb-4 text-lg font-thin font-sans text-gray-800">Description: {{ product.description }}</div>
+        <div class="flex flex-wrap justify-center items-center mx-auto md:flex-row my-20 space-x-6 ">
+        <a class="px-6 py-2 ring-1 text-gray-600 ring-purple-500 rounded-3xl shadow-md hover:bg-purple-500 hover:text-neutral-100" href="{% url 'update_product' product.id %}">Update</a>
+        <a class="px-6 py-2 ring-1 text-gray-600 ring-red-500 rounded-3xl shadow-md hover:bg-red-500 hover:text-neutral-100"  href="{% url 'delete_product' product.id %}">Delete</a>
+        </div>  
+    </div>
+</div>     -->
+
+
+<div class="flex flex-row bg-gray-100 h-full">
+    <div class="flex flex-between flex-col h-full md:flex-grow-0 md:flex-row space-y-2 items-center justify-center mx-20 my-10 shadow-lg rounded-2xl space-x-2 bg-neutral-50">
+  
+  <!-- image placeholder -->
+        <div class="flex justify-start md:h-1/2">
+            <img class="rounded-xl" src="{{ product.product_image.url }}" width="500">  
+        </div>
+  
+  
+        <!-- Card -->
+        <div class="flex flex-col">
+            <div class="px-3 text-3xl font-sans text-gray-600 font-thin">{{ product.brand }}</div>
+            <div class="px-3 text-lg font-semibold text-gray-600">{{ product.name }}</div>
+            <div class="px-3 text-lg font-thin font-sans text-gray-800">Shade: {{ product.shade }}</div>
+            <div class="px-3 text-lg font-thin font-sans text-gray-800">Price: {{ product.price }}</div>
+            <div class="px-3 text-lg font-thin font-sans text-gray-800">Quantity: {{ product.quantity }}</div>
+            <div class="px-3 pb-4 text-lg font-thin font-sans text-gray-800">Description: {{ product.description }}</div>
+            <div class="flex flex-wrap justify-center items-center mx-auto md:flex-row my-20 space-x-6 ">
+                <a class="px-6 py-2 ring-1 text-gray-600 ring-purple-500 rounded-3xl shadow-md hover:bg-purple-500 hover:text-neutral-100" href="{% url 'update_product' product.id %}">Update</a>
+                <a class="px-6 py-2 ring-1 text-gray-600 ring-red-500 rounded-3xl shadow-md hover:bg-red-500 hover:text-neutral-100"  href="{% url 'delete_product' product.id %}">Delete</a>
+            </div> 
+        </div>
+    </div>
+  </div>
 
 
 {% endblock %}

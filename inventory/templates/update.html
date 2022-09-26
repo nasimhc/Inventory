@@ -1,11 +1,30 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<h1>Update Products</h1>
+<!-- <h1>Update Products</h1>
 <form method="post">
     {% csrf_token %}
     {{ UpdateForm.as_p }}
     <input type="submit">
-</form>
+</form> -->
 
+
+
+<div class="flex flex-col mx-auto justify-center items-center py-10">
+    <!-- Header -->
+    <div class="py-4">
+        <h1 class="text-gray-700 text-3xl">Update Products</h1>
+    </div>
+
+    <!-- Form -->
+    <div class="flex">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ UpdateForm.as_p }}
+            <button type="submit" class="flex mx-auto mt-4 py-2 px-4 bg-orange-600 rounded-2xl text-white shadow-md hover:bg-orange-500">
+                Update
+            </button>
+        </form>
+    </div>
+</div>
 {% endblock %}

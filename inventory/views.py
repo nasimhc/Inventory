@@ -1,12 +1,21 @@
+from lib2to3.pgen2.token import MINEQUAL
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from .forms import ProductForm
 from .models import Product
 
 # Show all products
 @login_required(login_url='/login')
 def products(request):
+    if request.method == 'POST':
+        search = request.POST['search']
+        return render(request, 'products.html', {
+            'products': Product.objects.filter(Q(name__icontains=search) | 
+            Q(shade__icontains=search) | Q(brand__name__icontains=search))
+        })        
+
     if request.GET.get('q') != None:
         q = request.GET.get('q') 
         return render(request, 'products.html', {
@@ -16,7 +25,6 @@ def products(request):
         return render(request, 'products.html', {
             'products': Product.objects.all()
         })
-
 
 # Show single product page
 @login_required(login_url='/login')
@@ -29,7 +37,7 @@ def product(request, id):
 @login_required(login_url='/login')
 def add_product(request):
     if request.method == 'POST':
-        form = ProductForm(request.POST)
+        form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
         return redirect('/')
@@ -44,7 +52,7 @@ def update_product(request, id):
     product = Product.objects.get(pk=id)
 
     if request.method == 'POST':
-        form = ProductForm(request.POST, instance=product)
+        form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
             return redirect('products')
